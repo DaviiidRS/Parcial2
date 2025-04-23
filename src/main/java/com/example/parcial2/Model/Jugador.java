@@ -1,11 +1,14 @@
 package com.example.parcial2.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,5 +25,11 @@ public class Jugador {
 
     @ManyToOne
     @JoinColumn(name="id_equipo")
+    @JsonIgnore
     private Equipo equipo;
+
+    @OneToMany
+    @JsonIgnore
+    private List<EstadisticasJugador> estadisticasJugadores;
+
 }

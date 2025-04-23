@@ -1,5 +1,6 @@
 package com.example.parcial2.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,11 @@ public class Entrenador {
     private String especialidad;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="id_equipo")
     private Equipo equipo;
+
+    @Transient
+    private Long id_equipo;
+
 }

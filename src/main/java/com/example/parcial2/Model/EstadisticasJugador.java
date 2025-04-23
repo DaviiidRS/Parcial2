@@ -1,5 +1,7 @@
 package com.example.parcial2.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,10 +17,12 @@ public class EstadisticasJugador {
     private Long id_estadistica;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="id_jugador")
     private Jugador jugador;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="id_partido")
     private Partido partido;
 

@@ -1,11 +1,13 @@
 package com.example.parcial2.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,12 +22,19 @@ public class Partido {
     // llaves foráneas
     @ManyToOne
     @JoinColumn(name="id_equipo_local")
+    @JsonIgnore
     private Equipo equipo_local;
 
     @ManyToOne
     @JoinColumn(name="id_equipo_visita")
+    @JsonIgnore
     private Equipo equipo_visita;
 
     private Long goles_local;
     private Long goles_visita;
+
+    @OneToMany(mappedBy = "partido")
+    @JsonIgnore
+    private List<EstadisticasJugador> estadisticasJugadores;
+
 }
